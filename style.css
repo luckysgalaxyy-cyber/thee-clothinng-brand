@@ -1,0 +1,143 @@
+/* CSS Variables for Light/Dark */
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --primary: #0077ff;
+  --nav-bg: transparent;
+}
+[data-theme="dark"] {
+  --bg: #111111;
+  --text: #f5f5f5;
+  --primary: #66aaff;
+  --nav-bg: #222222;
+}
+
+/* Global */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  background: var(--nav-bg);
+  transition: background 0.3s;
+  z-index: 10;
+}
+.navbar.scrolled {
+  background: var(--bg);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.logo img { margin-right: 0.5rem; }
+
+/* Nav Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+.nav-links a { text-decoration: none; color: var(--text); }
+.nav-links li { position: relative; }
+
+/* Dropdown */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--bg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  list-style: none;
+  padding: 0.5rem;
+}
+.dropdown:hover .dropdown-content { display: block; }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 5rem 2rem;
+  background: url('https://source.unsplash.com/1600x600/?fashion,clothing') center/cover no-repeat;
+  color: white;
+}
+.hero h1 { font-size: 3rem; }
+.hero .btn {
+  background: var(--primary);
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+/* Products */
+.products { padding: 3rem 2rem; text-align: center; }
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.product {
+  background: var(--bg);
+  padding: 1rem;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+.product img { width: 100%; border-radius: 8px; }
+.product:hover { transform: scale(1.05); }
+
+/* Fade-in */
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 1s, transform 1s; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: var(--bg);
+  border-top: 1px solid #ddd;
+}
+.footer-content {
+  max-width: 600px;
+  margin: auto;
+}
+.footer-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-logo img { margin-right: 0.5rem; }
+
+/* Hamburger (mobile) */
+.hamburger { display: none; background: none; border: none; font-size: 2rem; }
+@media(max-width: 768px) {
+  .nav-links { 
+    display: none; 
+    flex-direction: column; 
+    background: var(--bg); 
+    position: absolute; 
+    top: 60px; right: 20px;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  .nav-links.active { display: flex; }
+  .hamburger { display: block; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media(max-width: 480px) {
+  .product-grid { grid-template-columns: 1fr; }
+}
